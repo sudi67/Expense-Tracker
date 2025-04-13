@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ExpenseRow = ({ expense }) => {
+const ExpenseRow = ({ expense, onDelete }) => {
   const formatAmount = (amount) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',

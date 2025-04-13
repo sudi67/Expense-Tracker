@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ExpenseRow from './ExpenseRow';
 
-const ExpenseTable = ({ expenses }) => {
+const ExpenseTable = ({ expenses, onDelete }) => {
   if (!expenses || expenses.length === 0) {
     return <p className="no-expenses">No expenses found</p>;
   }
@@ -14,11 +14,16 @@ const ExpenseTable = ({ expenses }) => {
           <th scope="col">Name</th>
           <th scope="col">Description</th>
           <th scope="col">Amount</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         {expenses.map((expense) => (
-          <ExpenseRow key={`${expense.name}-${expense.amount}`} expense={expense} />
+          <ExpenseRow 
+            key={`${expense.name}-${expense.amount}`} 
+            expense={expense} 
+            onDelete={onDelete}
+          />
         ))}
       </tbody>
     </table>
@@ -32,7 +37,8 @@ ExpenseTable.propTypes = {
       description: PropTypes.string,
       amount: PropTypes.number.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
 export default ExpenseTable;
