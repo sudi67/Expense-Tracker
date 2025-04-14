@@ -34,7 +34,14 @@ const App = () => {
             <ExpenseTable expenses={filteredExpenses} />
           </>
         } />
-        <Route path="/reports" element={<Reports />} />
+        <Route path="/reports" element={
+          <Reports 
+            expenses={expenses}
+            onDelete={(expenseToDelete) => 
+              setExpenses(expenses.filter(expense => expense !== expenseToDelete))
+            }
+          />
+        } />
       </Routes>
     </div>
   );
